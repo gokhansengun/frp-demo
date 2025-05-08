@@ -1,0 +1,26 @@
+services:
+  frpc-customer-a:
+    image: ghcr.io/fatedier/frpc:v0.62.1
+    volumes:
+      - ./conf/frpc-customer-a.toml:/frp-conf/frpc.toml
+    command:
+      - -c
+      - /frp-conf/frpc.toml
+
+  app-customer-a:
+    image: hashicorp/http-echo:1.0.0
+    command: "-text='CUSTOMER A APP'"
+    network_mode: "service:frpc-customer-a"
+
+  frpc-customer-b:
+    image: ghcr.io/fatedier/frpc:v0.62.1
+    volumes:
+      - ./conf/frpc-customer-b.toml:/frp-conf/frpc.toml
+    command:
+      - -c
+      - /frp-conf/frpc.toml
+
+  app-customer-b:
+    image: hashicorp/http-echo:1.0.0
+    command: "-text='CUSTOMER B APP'"
+    network_mode: "service:frpc-customer-b"

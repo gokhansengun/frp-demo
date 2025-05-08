@@ -1,0 +1,22 @@
+services:
+  frps-customer-a:
+    image: ghcr.io/fatedier/frps:v0.62.1
+    volumes:
+      - ./conf/frps-customer-a.toml:/frp-conf/frps.toml
+    ports:
+      - 3001:3001
+      - 7001:7001
+    command:
+      - -c
+      - /frp-conf/frps.toml
+
+  frps-customer-02:
+    image: ghcr.io/fatedier/frps:v0.62.1
+    volumes:
+      - ./conf/frps-customer-b.toml:/frp-conf/frps.toml
+    ports:
+      - 3002:3002
+      - 7002:7002
+    command:
+      - -c
+      - /frp-conf/frps.toml

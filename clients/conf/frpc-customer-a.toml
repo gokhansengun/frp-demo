@@ -1,0 +1,8 @@
+serverAddr = "192.168.25.144"
+serverPort = 7001
+
+[[proxies]]
+name = "web"
+type = "http"
+localPort = 5678 # port the local application is listening to
+customDomains = [ "frp-demo.192.168.25.144.nip.io" ]
